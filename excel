@@ -1,0 +1,27 @@
+import openpyxl
+from openpyxl.utils import get_column_letter
+
+import functions
+wb = openpyxl.Workbook()
+ws = wb.active
+index_list1 = functions.index(1,3,10)
+index_list2 = functions.index(9,-1,10)
+print(index_list1[0])
+
+for row in range(1,11):
+    var = index_list1[row - 1]
+    ws["A" + str(row)].value = var
+for row in range(1,11):
+    var = index_list2[row-2]
+    ws["B" + str(row)] = var
+
+
+for col in range(3, 30):
+    char = get_column_letter(col)
+    char_oneback = get_column_letter(col-1)
+    char_twoback = get_column_letter(col-2)
+    for row in range(1,11):
+        ws[char + str(row)] = ws[char_oneback + str(row)].value + ws[char_twoback + str(row)].value
+
+wb.save("Fibonacci.xlsx")
+
