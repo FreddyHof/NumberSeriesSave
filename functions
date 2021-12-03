@@ -1,0 +1,280 @@
+#   index g
+#   omni g
+#   fibonacci g
+#   mash
+#   merge
+#   addition
+#   multiplication
+#   negative
+#   cumulative_summation
+#   cumulative_multiplication
+#   alternate g
+#   fouralternate g
+#   square
+#   absolute
+#   multiplythensubtract [index,2]
+#   turn_half_negative
+#   turn_double_half_negative
+
+def index(n1input=1, jump=1, nt=10):
+    i = 1
+    n1 = n1input
+    index = [n1]
+    while i < nt:
+        i += 1
+        n1 += jump
+        index.append(n1)
+    return index
+
+
+#Recursive: Fibonacci with ingrained index subtraction
+# fibonacci(0th number, 1st number, index subtraction multiplier, amount)
+def fibonacci(n0input, n1input, index, nt=float("inf")):
+    if len(index) < nt:
+        nt = len(index)
+    nlist = [n1input]
+    n0 = n0input
+    n1 = n1input
+    i = 0
+    while i < nt:
+        answer = n0 + n1 - index[i]
+        nlist.append(answer)
+        n0 = n1
+        n1 = answer
+        i += 1
+    return nlist
+
+
+#Creates a new list out of 2 lists that uses alternating items from the 2 lists, starting with x. nt is an optional limit
+def mash(x,y,nt=float("inf")):
+    if len(x) < nt:
+        nt = len(x)
+        if len(y) < nt:
+            nt = len(y)
+    x_taker = 2
+    y_taker = 3
+    mashed = [x[0],y[1]]
+    while x_taker < nt:
+        mashed.append(x[x_taker])
+        x_taker += 2
+        if y_taker < nt:
+            mashed.append(y[y_taker])
+            y_taker += 2
+    return mashed
+
+
+def merge(x,y,nt=float("inf")):
+    if len(x) < nt/2:
+        nt = len(x)
+        if len(y) < nt/2:
+            nt = len(y)
+    i = 0
+    merged = []
+    while i < nt/2:
+        merged.append(x[i])
+        merged.append(y[i])
+        i += 1
+    return merged
+
+
+def omni(n,nt=100):
+    i = 0
+    nlist = []
+    while i < nt:
+        nlist.append(n)
+        i += 1
+    return nlist
+
+
+def addition(x,y,nt=float("inf")):
+    nlist = []
+    if len(x) < nt:
+        nt = len(x)
+        if len(y) < nt:
+            nt = len(y)
+    i = 0
+    while i < nt:
+        p = x[i] + y[i]
+        nlist.append(p)
+        i += 1
+    return nlist
+
+
+def multiplication(x,y,nt=float("inf")):
+    nlist = []
+    if len(x) < nt:
+        nt = len(x)
+        if len(y) < nt:
+            nt = len(y)
+    i = 0
+    while i < nt:
+        p = x[i] * y[i]
+        nlist.append(p)
+        i += 1
+    return nlist
+
+
+def negative(x):
+    y = omni(-1,100)
+    nlist = multiplication(x,y,20)
+    return nlist
+
+
+def cumulative_summation(x, starting_value=0):
+    nt = len(x)
+    i = 0
+    n1 = starting_value
+    nlist = []
+    while i < nt:
+        nlist.append(n1)
+        n1 += x[i]
+        i += 1
+    return nlist
+
+
+def total(x):
+    nt = len(x)
+    sum = 0
+    for i in range(nt):
+        sum += x[i]
+    return sum
+
+
+def cumulative_multiplication(n1, x, nt=float("inf")):
+    if len(x) < nt:
+        nt = len(x)
+    i = 0
+    nlist = []
+    while i < nt:
+        nlist.append(n1)
+        n1 = n1 * x[i]
+        i += 1
+    return nlist
+
+
+def alternate(x1,x2,nt=20):
+    i = 0
+    nlist = []
+    while i < nt:
+        nlist.append(x1)
+        i += 1
+        if i == nt:
+            break
+        nlist.append(x2)
+        i += 1
+    return nlist
+
+
+def four_alternate(x1,x2,x3,x4,nt=100):
+    i = 0
+    nlist = []
+    while i < nt:
+        nlist.append(x1)
+        i += 1
+        if i == nt:
+            break
+        nlist.append(x2)
+        i += 1
+        if i == nt:
+            break
+        nlist.append(x3)
+        i += 1
+        if i == nt:
+            break
+        nlist.append(x4)
+        i += 1
+        if i == nt:
+            break
+    return nlist
+
+
+def square(x,nt=float("inf")):
+    nlist = []
+    i = 0
+    if nt > len(x):
+        nt = len(x)
+    while i < nt:
+        sq = x[i] * x[i]
+        nlist.append(sq)
+        i += 1
+    return nlist
+
+
+def absolute(x,nt=float("inf")):
+    nlist = []
+    i = 0
+    if nt > len(x):
+        nt = len(x)
+    while i < nt:
+        u = x[i]
+        o = abs(u)
+        nlist.append(o)
+        i += 1
+    return nlist
+
+#recursive
+def gen_multiply_then_subtractindex(n1, m, s, nt=10):
+    nlist = []
+    i = 0
+    while i < nt:
+        nlist.append(n1)
+        n1 = n1 * m[i] - s[i]
+        i += 1
+    return nlist
+def gen_multiply_then_subtract(n1, m, s, nt=10):
+    nlist = []
+    i = 0
+    while i < nt:
+        nlist.append(n1)
+        n1 = n1 * m - s
+        i += 1
+    return nlist
+def gen_multiply_then_subtract2(n1, m, s, nt=10):
+    nlist = []
+    i = 0
+    while i < nt:
+        nlist.append(n1)
+        n1 = n1 * m
+        nlist.append(n1)
+        n1 = n1 - s
+        i += 1
+    return nlist
+def gen_multiply_then_subtractindex2(n1, m, s, nt=10):
+    nlist = []
+    i = 0
+    while i < nt:
+        nlist.append(n1)
+        n1 = n1 * m[i]
+        nlist.append(n1)
+        n1 = n1 - s[i]
+        i += 1
+    return nlist
+
+
+def turn_half_negative(x):
+    nt = len(x)
+    list = alternate(1, -1, nt)
+    nlist = multiplication(x, list, nt)
+    return nlist
+
+
+def turn_double_half_negative(x):
+    nt = len(x)
+    list = four_alternate(1,1,-1,-1)
+    nlist = multiplication(x, list, nt)
+    return nlist
+
+
+def crazy_shmazy(n1,nt):
+    nlist = []
+    i = 0
+    while i < nt:
+        nlist.append(n1)
+        n1 = str(n1)
+        total = 0
+        for ch in n1:
+            sq = int(ch) ** 2
+            total += sq
+        n1 = total
+        i += 1
+    return nlist
