@@ -1,0 +1,63 @@
+import random
+import gen
+import functions
+
+def easiest():
+    number_series = []
+    choice = random.choices(["cumulative_summation_megaeasy", "easiest_index_merge", "cumulative_summation_easy", "hard_index"], [4, 8, 7, 4])
+    choice = choice[0]
+    if choice == "cumulative_summation_megaeasy":
+        number_series = gen.cumulative_summation_megaeasy()
+    if choice == "easiest_index_merge":
+        number_series = gen.easiest_index_merge()
+    if choice == "cumulative_summation_easy":
+        number_series = gen.cumulative_summation_easy()
+    if choice == "hard_index":
+        number_series = gen.hard_index()
+    return number_series
+
+
+def easy():
+    number_series = []
+    choice = random.choices(["easy_index_merge","cumulative_summation","cumulative_multiplication_alternate","multiply_then_subtract2"],[15,35,20,30])
+    if choice == "easy_index_merge":
+        number_series = gen.easy_index_merge()
+    if choice == "cumulative_summation":
+        number_series = gen.cumulative_summation()
+    if choice == "cumulative_multiplication_alternate":
+        number_series = gen.cumulative_multiplication_alternate()
+    if choice == "multiply_then_subtract2":
+        number_series = gen.multiply_then_subtract2()
+    return number_series
+
+
+def medium():
+    number_series = []
+    choice = random.choices(["square_medium","multiply_then_subtract1"],[80,20])
+    choice = choice[0]
+    if choice == "square_medium":
+        number_series = gen.square_medium()
+    if choice == "multiply_then_subtract":
+        number_series = gen.multiply_then_subtract1()
+    return number_series
+
+
+def hard():
+    number_series = []
+    choice = random.choices(["square_hard","crazy_shmazy","fibonacci","hard_multiply_then_subtract"],[20,8,30,35])
+    if choice == "square_hard":
+        number_series = gen.square_hard()
+    if choice == "crazy_shmazy":
+        number_series = gen.crazy_shmazy()
+    if choice == "fibonacci":
+        number_series = gen.fibonacci()
+    if choice == "hard_multiply_then_subtract":
+        number_series = gen.hard_multiply_then_subtract()
+
+
+"""Medium1:  Square a Simple Index
+    gen.square_medium()
+
+Medium2:  First you multiply by constant. Then you subtract by different constant. But do both steps in 1 result 
+    multiply_then_subtract1()
+    """
